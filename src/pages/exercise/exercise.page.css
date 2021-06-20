@@ -1,0 +1,17 @@
+.name {
+    font-size: large;
+}
+
+span {
+    margin-right: 1rem;
+    float: left;
+    line-height: 2rem;
+}
+
+ion-list-header {
+    font-size: x-large;
+}
+
+.item-lines-full {
+    --border-width: 0 0 3px 0 !important;
+}

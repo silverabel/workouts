@@ -1,15 +1,19 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
-  IonApp,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
+    IonApp,
+    IonIcon,
+    IonLabel,
+    IonRouterOutlet,
+    IonTabBar,
+    IonTabButton,
+    IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Workouts from './pages/workouts/workouts';
-import Exercises from './pages/exercises/exercises';
+import WorkoutsPage from './pages/workouts/workouts.page';
+import WorkoutPage from './pages/workout/workout.page';
+import ExercisesPage from './pages/exercises/exercises.page';
+import ExercisePage from './pages/exercise/exercise.page';
+import { barbellSharp, body, bodyOutline, bodySharp } from 'ionicons/icons';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -29,33 +33,33 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import AddWorkoutPage from './pages/workout/addWorkout.page';
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/workouts">
-            <Workouts />
-          </Route>
-          <Route exact path="/exercises">
-            <Exercises />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/workouts" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="workouts" href="/workouts">
-            <IonLabel>Workouts</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="exercises" href="/exercises">
-            <IonLabel>Exercises</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
+    <IonApp>
+        <IonReactRouter>
+            <IonTabs>
+                <IonRouterOutlet>
+                    <Route exact path="/workouts"     component={WorkoutsPage}  ></Route>
+                    <Route       path="/workout/:id"  component={WorkoutPage}   ></Route>
+                    <Route exact path="/exercises"    component={ExercisesPage} ></Route>
+                    <Route       path="/exercise/:id" component={ExercisePage}  ></Route>
+                    <Route exact path="/workout/add"  component={AddWorkoutPage}></Route>
+                    <Route><Redirect to="/workouts" /></Route>
+                </IonRouterOutlet>
+                <IonTabBar slot="bottom" color="primary">
+                    <IonTabButton tab="workouts" href="/workouts" layout="icon-start">
+                        <IonIcon icon={ body } />
+                        <IonLabel>Workouts</IonLabel>
+                    </IonTabButton>
+                    <IonTabButton tab="exercises" href="/exercises" layout="icon-start">
+                        <IonIcon icon={ barbellSharp } />
+                        <IonLabel>Exercises</IonLabel>
+                    </IonTabButton>
+                </IonTabBar>
+            </IonTabs>
+        </IonReactRouter>
+    </IonApp>
 );
 
 export default App;
