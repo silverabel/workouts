@@ -24,14 +24,21 @@ interface ExercisePageProps extends RouteComponentProps<{id: string}> {};
 
 const ExercisePage: React.FC<ExercisePageProps> = ({ match }) => {
 
-    const [exercise, setExercise]: [IExercise | null, any] = useState(ExerciseService.getExercise(Number(match.params.id)));
+    const [exercise, setExercise]: [IExercise | null, any] = useState({
+        id: 0,
+        name: 'Exercise',
+        parameters: [],
+    });
     const [exerciseParameters, setExerciseParameters]: [any, any] = useState();
     const [editing, setEditing]: [boolean, any] = useState(false);
     const [originalExercise, setOriginalExercise]: [IExercise | null, any] = useState(null);
 
     useEffect(() => {
+        const exerciseId = match.url.substr(match.url.length - 1, 1);
+        if (!exerciseId) return;
+
         setEditing(false);
-        setExercise(ExerciseService.getExercise(Number(match.params.id)));
+        setExercise(ExerciseService.getExercise(Number(exerciseId)));
     }, [match]);
 
     useEffect(() => {

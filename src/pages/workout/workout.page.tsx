@@ -29,7 +29,10 @@ const ExercisePage: React.FC<WorkoutPageProps> = ({ match, history }) => {
     const [exercisesLists, setExercisesLists]: [any, any] = useState();
 
     useEffect(() => {
-        setWorkout(WorkoutService.getWorkout(Number(match.params.id)));
+        const workoutId = match.url.substr(match.url.length - 1, 1);
+        if (!workoutId) return;
+
+        setWorkout(WorkoutService.getWorkout(Number(workoutId)));
     }, [match]);
 
     useEffect(() => {

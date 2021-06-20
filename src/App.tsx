@@ -40,12 +40,12 @@ const App: React.FC = () => (
         <IonReactRouter>
             <IonTabs>
                 <IonRouterOutlet>
-                    <Route exact path="/workouts"     component={WorkoutsPage}  ></Route>
-                    <Route       path="/workout/:id"  component={WorkoutPage}   ></Route>
-                    <Route exact path="/exercises"    component={ExercisesPage} ></Route>
-                    <Route       path="/exercise/:id" component={ExercisePage}  ></Route>
-                    <Route exact path="/workout/add"  component={AddWorkoutPage}></Route>
-                    <Route><Redirect to="/workouts" /></Route>
+                    <Route exact path="/workouts"     component={WorkoutsPage}  />
+                    <Route exact path="/workout/:id"  component={WorkoutPage}   />
+                    <Route exact path="/exercises"    component={ExercisesPage} />
+                    <Route exact path="/exercise/:id" component={ExercisePage}  />
+                    <Route       path="/workout/add"  component={AddWorkoutPage}/>
+                    <Redirect to="/workouts" />
                 </IonRouterOutlet>
                 <IonTabBar slot="bottom" color="primary">
                     <IonTabButton tab="workouts" href="/workouts" layout="icon-start">
